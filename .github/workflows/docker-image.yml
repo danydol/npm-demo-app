@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag dando1/node:$(date +%s)
+    - name: push to DockerHub
+      run: docker push dando1/node:$(date +%s)
