@@ -22,7 +22,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          docker build -t tag dando1/node:100
+          docker build -t tag dando1/node:100 .
       
     - name: Push Docker Image
       run: |
