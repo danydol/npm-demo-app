@@ -22,7 +22,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          ls 
+          docker build -t . 
       
     - name: Push Docker Image
       run: |
