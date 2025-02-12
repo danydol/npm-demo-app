@@ -22,7 +22,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          pwd
+          ls 
       
     - name: Push Docker Image
       run: |
