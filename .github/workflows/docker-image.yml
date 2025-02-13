@@ -23,6 +23,7 @@ jobs:
     - name: Build Docker Image
       run: |
           ls -la
+          cd ..
       
     - name: Push Docker Image
       run: |
