@@ -22,7 +22,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          docker build -t node:latest ./npm-demo-app
+          docker build -t node:latest ./
       
     - name: Push Docker Image
       run: |
