@@ -18,11 +18,12 @@ jobs:
       with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD1 }}
+          context: .
 
 
     - name: Build Docker Image
       run: |
-          docker build -t dando1/node:100 .
+          docker build -t dando1/node:100 
           
       
     - name: Push Docker Image
