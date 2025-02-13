@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Debug Repository Structure
       run: |
-          cd /
+          cd ..
           pwd
           ls -la  # Check if Dockerfile exists
     - name: Log in to Docker Hub
