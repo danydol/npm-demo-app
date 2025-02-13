@@ -15,6 +15,19 @@ jobs:
     steps:
     - name: Checkout Repository  # ✅ Fetches your repository
       uses: actions/checkout@v4
+    
+    - name: Get Docker Image Tag
+      run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            TAG=${GITHUB_REF#refs/tags/}
+          elif [[ $GITHUB_REF == refs/heads/main ]]; then
+            TAG=latest
+          else
+            TAG=${GITHUB_SHA::7}
+          fi
+          echo "TAG=$TAG" >> $GITHUB_ENV
+     
+      
     - name: Debug Repository Structure
       run: |
           pwd
@@ -29,9 +42,9 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          docker build -t dando1/node:100 .
+          docker build -t dando1/node:$TAG .
           
       
     - name: Push Docker Image
       run: |
-          docker push  dando1/node:100
+          docker push  dando1/node:$TAG
