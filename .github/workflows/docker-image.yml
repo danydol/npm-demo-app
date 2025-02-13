@@ -22,7 +22,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          docker build -t node:latest ./
+          ls -la
       
     - name: Push Docker Image
       run: |
