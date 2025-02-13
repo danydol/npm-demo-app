@@ -44,9 +44,9 @@ jobs:
 
     - name: Build Docker Image
       run: |
-          docker build -t dando1/node:$TAG .
+          docker build -t 109.186.59.105/node:$TAG .
           
       
     - name: Push Docker Image
       run: |
-          docker push  dando1/node:$TAG
+          docker push  109.186.59.105/node:$TAG
