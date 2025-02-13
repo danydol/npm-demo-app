@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout Repository  # ✅ Fetches your repository
+      uses: actions/checkout@v4
     - name: Debug Repository Structure
       run: |
-          cd ..
           pwd
           ls -la  # Check if Dockerfile exists
     - name: Log in to Docker Hub
