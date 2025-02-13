@@ -19,13 +19,14 @@ jobs:
     - name: Get Docker Image Tag
       run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
-            TAG=${GITHUB_REF#refs/tags/}
-          elif [[ $GITHUB_REF == refs/heads/main ]]; then
-            TAG=latest
+            SERVVAR=${GITHUB_REF#refs/tags/}  # Extract tag name
           else
-            TAG=${GITHUB_SHA::7}
+            SERVVAR="default_value"
           fi
-          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "SERVVAR=$SERVVAR" >> $GITHUB_ENV  # Save it as an environment variable
+
+    - name: Debug SERVVAR
+      run: echo "The SERVVAR is $SERVVAR"
      
       
     - name: Debug Repository Structure
