@@ -34,4 +34,4 @@ jobs:
       
     - name: Push Docker Image
       run: |
-          docker push tag dando1/node:100
+          docker push  dando1/node:100
