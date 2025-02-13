@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Debug Repository Structure
+      run: |
+          pwd
+          ls -la  # Check if Dockerfile exists
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
