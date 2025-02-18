@@ -54,4 +54,4 @@ jobs:
       
     - name: Push Docker Image
       run: |
-          docker push  109.186.59.105:8083/node:$TAG
+          docker push  109.186.150.144:8083/node:$TAG
