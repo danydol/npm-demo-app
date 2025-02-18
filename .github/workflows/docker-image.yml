@@ -26,6 +26,15 @@ jobs:
             TAG=${GITHUB_SHA::7}
           fi
           echo "TAG=$TAG" >> $GITHUB_ENV
+          
+dast_scan:
+    name: Dynamic Analysis (DAST)
+    runs-on: ubuntu-latest
+    needs: sast_scan
+    steps:
+      - name: Start Application
+        run: |
+          docker-compose up -d  # Start the application for scanning       
       
      
       
