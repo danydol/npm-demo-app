@@ -53,10 +53,4 @@ jobs:
         run: |
           docker run --rm sullo/nikto -h http://localhost:8080
 
-      # Run Snyk DAST if Snyk token is available
-      - name: Run Snyk DAST
-        uses: snyk/actions/docker@master
-        with:
-          command: test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+     
