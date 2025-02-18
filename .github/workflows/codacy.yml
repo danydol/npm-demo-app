@@ -49,7 +49,7 @@ jobs:
           cmd_options: "-a"
 
       # Run Nikto Web Scanner
-      - name: Run Nikto Scan
+      - name: Run Nikto Scan2
         run: |
           docker run --rm sullo/nikto -h http://localhost:8080
 
