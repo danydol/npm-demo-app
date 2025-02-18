@@ -41,7 +41,7 @@ jobs:
     - name: Log in to nexus
       uses: docker/login-action@v3
       with:
-          registry: 109.186.59.105:8083
+          registry: 109.186.150.144:8083
           username: ${{ secrets.DOCKER_USERNAME_NEXUS }}
           password: ${{ secrets.DOCKER_PASSWORD_NEXUS }}
           context: .
