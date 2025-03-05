@@ -1,0 +1,62 @@
+name: Security Scans (SAST & DAST)
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 1'  # Run every Monday
+
+jobs:
+  sast_scan:
+    name: Static Analysis (SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Run GitHub CodeQL (for public repos & GitHub Enterprise)
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript, python  # Change based on your stack
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+      # Run Semgrep for security scanning
+      - name: Run Semgrep SAST
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "p/default"
+
+  dast_scan:
+    name: Dynamic Analysis (DAST)
+    runs-on: ubuntu-latest
+    needs: sast_scan
+    steps:
+      - name: Start Application
+        run: |
+          docker-compose up -d  # Start the application for scanning
+
+      # Run OWASP ZAP DAST scan
+      - name: Run OWASP ZAP Scan
+        uses: zaproxy/action-full-scan@v0.6.0
+        with:
+          target: "http://localhost:8080"
+          rules_file_name: ".zap/rules.tsv"
+          cmd_options: "-a"
+
+      # Run Nikto Web Scanner
+      - name: Run Nikto Scan
+        run: |
+          docker run --rm sullo/nikto -h http://localhost:8080
+
+      # Run Snyk DAST if Snyk token is available
+      - name: Run Snyk DAST
+        uses: snyk/actions/docker@master
+        with:
+          command: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
