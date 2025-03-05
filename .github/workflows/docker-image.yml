@@ -12,9 +12,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Authenticate with Snyk
-      run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Checkout Repository  # ✅ Fetches your repository
       uses: actions/checkout@v4
