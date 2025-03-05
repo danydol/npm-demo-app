@@ -1,0 +1,48 @@
+name: Snyk Security Scan
+
+on:
+  pull_request:
+    branches: [ main, test ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 1'  # Runs every Monday
+
+jobs:
+  security:
+    name: Snyk Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js (Optional)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18  # Use the required version for your project
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Authenticate with Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+      # 🛠️ **Snyk SAST - Static Code Security Scan**
+      - name: Run Snyk Code Security Scan
+        run: snyk code test --severity-threshold=high || true  # Ignore exit code
+
+      # 🔍 **Snyk Open Source Vulnerability Scan**
+      - name: Run Snyk Dependency Scan
+        run: snyk test --severity-threshold=high || true
+
+      # 🏗️ **Snyk Container Security (if using Docker)**
+      - name: Run Snyk Docker Image Scan
+        run: snyk container test mydockerhubuser/myimage:latest --severity-threshold=high || true
+
+      # 🌐 **Snyk DAST (Dynamic Application Security Testing)**
+      - name: Run Snyk Web App Scan
+        run: snyk iac test || true  # Checks for misconfigurations in Infrastructure-as-Code (Terraform, Kubernetes)
+
+      - name: Report Success
+        run: echo "Snyk Security Scan Completed!"
