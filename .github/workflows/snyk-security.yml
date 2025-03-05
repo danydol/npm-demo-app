@@ -25,8 +25,7 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      - name: Authenticate with Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+    
 
       # 🛠️ **Snyk SAST - Static Code Security Scan**
       - name: Run Snyk Code Security Scan
