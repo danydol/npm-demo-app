@@ -34,7 +34,7 @@ jobs:
     - name: Run SonarQube Scan
       run: |
           sonar-scanner \
-            -Dsonar.host.url=http://your-sonarqube-server:9000 \
+            -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.projectKey=your-project-key \
             -Dsonar.sources=.
