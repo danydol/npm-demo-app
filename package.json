@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.2",
-    "fs": "0.0.1-security",
+    "fs": "0.0.2",
     "jasmine": "^3.1.0",
     "jasmine-node": "^1.14.5",
     "pack-zip": "^0.2.2",
