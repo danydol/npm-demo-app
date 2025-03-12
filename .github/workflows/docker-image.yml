@@ -10,7 +10,7 @@ jobs:
 
   build:
 
-    runs-on: self-hosted
+    runs-on: dan
 
     steps:
     - name: Checkout Repository  # ✅ Fetches your repository
