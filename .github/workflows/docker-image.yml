@@ -1,4 +1,4 @@
-name: Docker Image CICD
+name: Docker Image CICD_01
 
 on:
   push:
