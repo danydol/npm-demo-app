@@ -11,7 +11,7 @@ on:
 jobs:
   sast_scan:
     name: Static Analysis (SAST)
-    runs-on: ubuntu-latest
+    runs-on: dan
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
