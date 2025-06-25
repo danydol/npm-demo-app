@@ -1,8 +1,11 @@
-name: Deploy to Production Only
+name: Deploy
 on:
   workflow_dispatch:
     inputs:
-      confirm:
-        description: 'This will deploy to PRODUCTION only. Type "production" to confirm'
+      environment:
+        description: 'Environment (locked to production)'
         required: true
-        type: string
+        default: 'production'
+        type: choice
+        options:
+          - production
