@@ -1,0 +1,8 @@
+name: Deploy to Production Only
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'This will deploy to PRODUCTION only. Type "production" to confirm'
+        required: true
+        type: string
